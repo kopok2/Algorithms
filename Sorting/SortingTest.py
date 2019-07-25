@@ -7,6 +7,8 @@ from InsertionSort import insertion_sort
 from MergeSort import merge_sort
 from HeapSort import heap_sort
 from QuickSort import quick_sort
+from CountingSort import counting_sort
+from RadixSort import radix_sort
 
 
 def timing(f):
@@ -20,7 +22,7 @@ def timing(f):
     return wrap
 
 
-TEST_ARRAYS_COUNT = 10
+TEST_ARRAYS_COUNT = 20
 
 
 class SortingTest(unittest.TestCase):
@@ -76,6 +78,24 @@ class SortingTest(unittest.TestCase):
             unsorted = array.copy()
             unsorted.sort()
             quick_sort(array)
+            self.assertEqual(unsorted, array)
+
+    @timing
+    def test_counting_sort(self):
+        for x in range(TEST_ARRAYS_COUNT):
+            array = [random.randrange(0, 1000) for y in range(x * 100 + 1)]
+            unsorted = array.copy()
+            unsorted.sort()
+            counting_sort(array)
+            self.assertEqual(unsorted, array)
+
+    @timing
+    def test_radix_sort(self):
+        for x in range(TEST_ARRAYS_COUNT):
+            array = [random.randrange(0, 1000) for y in range(x * 1000 + 1)]
+            unsorted = array.copy()
+            unsorted.sort()
+            radix_sort(array)
             self.assertEqual(unsorted, array)
 
 
