@@ -9,6 +9,11 @@ from HeapSort import heap_sort
 from QuickSort import quick_sort
 from CountingSort import counting_sort
 from RadixSort import radix_sort
+from BucketSort import bucket_sort
+from ShellSort import shell_sort
+from CombSort import comb_sort
+from PigeonholeSort import pigeonhole_sort
+from CycleSort import cycle_sort
 
 
 def timing(f):
@@ -26,6 +31,15 @@ TEST_ARRAYS_COUNT = 20
 
 
 class SortingTest(unittest.TestCase):
+    @timing
+    def test_library_sort(self):
+        for x in range(TEST_ARRAYS_COUNT):
+            array = [random.randrange(0, 1000) for y in range(x * 100 + 1)]
+            unsorted = array.copy()
+            unsorted.sort()
+            array.sort()
+            self.assertEqual(unsorted, array)
+
     @timing
     def test_selection_sort(self):
         for x in range(TEST_ARRAYS_COUNT):
@@ -92,10 +106,55 @@ class SortingTest(unittest.TestCase):
     @timing
     def test_radix_sort(self):
         for x in range(TEST_ARRAYS_COUNT):
-            array = [random.randrange(0, 1000) for y in range(x * 1000 + 1)]
+            array = [random.randrange(0, 1000) for y in range(x * 100 + 1)]
             unsorted = array.copy()
             unsorted.sort()
             radix_sort(array)
+            self.assertEqual(unsorted, array)
+
+    @timing
+    def test_bucket_sort(self):
+        for x in range(TEST_ARRAYS_COUNT):
+            array = [random.randrange(0, 1000) for y in range(x * 100 + 1)]
+            unsorted = array.copy()
+            unsorted.sort()
+            bucket_sort(array)
+            self.assertEqual(unsorted, array)
+
+    @timing
+    def test_shell_sort(self):
+        for x in range(TEST_ARRAYS_COUNT):
+            array = [random.randrange(0, 1000) for y in range(x * 100 + 1)]
+            unsorted = array.copy()
+            unsorted.sort()
+            shell_sort(array)
+            self.assertEqual(unsorted, array)
+
+    @timing
+    def test_comb_sort(self):
+        for x in range(TEST_ARRAYS_COUNT):
+            array = [random.randrange(0, 1000) for y in range(x * 100 + 1)]
+            unsorted = array.copy()
+            unsorted.sort()
+            comb_sort(array)
+            self.assertEqual(unsorted, array)
+
+    @timing
+    def test_pigeonhole_sort(self):
+        for x in range(TEST_ARRAYS_COUNT):
+            array = [random.randrange(0, 1000) for y in range(x * 100 + 1)]
+            unsorted = array.copy()
+            unsorted.sort()
+            pigeonhole_sort(array)
+            self.assertEqual(unsorted, array)
+
+    @timing
+    def test_cycle_sort(self):
+        for x in range(TEST_ARRAYS_COUNT):
+            array = [random.randrange(0, 1000) for y in range(x * 100 + 1)]
+            unsorted = array.copy()
+            unsorted.sort()
+            cycle_sort(array)
             self.assertEqual(unsorted, array)
 
 
